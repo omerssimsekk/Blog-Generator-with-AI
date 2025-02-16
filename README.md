@@ -2,7 +2,7 @@
 
 A modern, sleek web application that generates blog posts using AI. Built with Next.js, TypeScript, and TailwindCSS.
 
-![AI Blog Generator](preview.png)
+![AI Blog Generator]
 
 ## Features
 
@@ -32,20 +32,62 @@ cd blogenerator
 
 2. Install dependencies:
 ```bash
+# Install all required packages
 npm install
+
+# Install specific dependencies if any are missing
+npm install @heroicons/react framer-motion axios clsx tailwind-merge
+npm install -D @tailwindcss/typography
 ```
 
-3. Create a `.env.local` file in the root directory and add your DeepSeek API key:
+3. Set up Tailwind CSS (if not already configured):
+```bash
+# Initialize Tailwind CSS
+npx tailwindcss init -p
+```
+
+4. Create a `.env.local` file in the root directory and add your DeepSeek API key:
 ```env
 DEEPSEEK_API_KEY=your_api_key_here
 ```
 
-4. Run the development server:
+5. Ensure your `tailwind.config.ts` includes all necessary configurations:
+```typescript
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  darkMode: ["class"],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    // ... your theme configuration
+  },
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
+};
+
+export default config;
+```
+
+6. Verify your `tsconfig.json` has the correct paths:
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
+
+7. Run the development server:
 ```bash
 npm run dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+8. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Environment Variables
 
